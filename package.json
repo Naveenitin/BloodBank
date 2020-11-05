@@ -22,9 +22,12 @@
     "bootstrap": "^4.5.3",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "jquery": "^3.5.1",
     "mongoose": "^5.10.12",
     "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.0.1",
     "popper.js": "^1.16.1"
   }
 }
