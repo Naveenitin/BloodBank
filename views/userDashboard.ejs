@@ -1,2 +1,34 @@
-Hey!! you are successfully logged in.
-<a href="/logout"><button>Log Out</button></a>
+<%- include('partials/header') %> 
+<link rel="stylesheet" href="/CSS/dashboard.css">
+<div class="jumbotron">
+    <div class="container">
+        <h2>
+            <%= user.name %> 
+        </h2>
+        <h3><%= user.email %> </h3>
+        <a href="/add">Add your contribution here</a>
+        <a href="/logout"><button>Log Out</button></a>
+    </div>
+    <div class="donation">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Report</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%= user %> 
+<%- include('partials/footer') %> 

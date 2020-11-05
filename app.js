@@ -91,11 +91,8 @@ app.get("/logout",function(req,res){
 
 //User dashboard
 app.get("/userDashboard",isLoggedIn,function(req,res){
-    res.render("userDashboard");
+    res.render("userDashboard",{user:req.user});
 });
-
-
-
 
 
 
