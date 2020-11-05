@@ -1,0 +1,27 @@
+{
+  "name": "bloodbank",
+  "version": "1.0.0",
+  "description": "A web application for Blood Bank.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naveenitin/BloodBank.git"
+  },
+  "author": "Naveen Gaur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naveenitin/BloodBank/issues"
+  },
+  "homepage": "https://github.com/Naveenitin/BloodBank#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.12",
+    "passport": "^0.4.1"
+  }
+}
