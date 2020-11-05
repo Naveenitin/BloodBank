@@ -110,7 +110,7 @@ function prevent(req, res, next) {
     if(!req.isAuthenticated()){
         return next();
     }
-    console.log("Not attenticated");
+    console.log("Not athenticated");
     res.redirect("/userLogin");
 }
 
