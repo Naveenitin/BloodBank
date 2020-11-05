@@ -1,0 +1,59 @@
+<%- include("partials/header") %> 
+<script> 
+          
+    // Function to check Whether both passwords 
+    // is same or not. 
+    function checkPassword(form) { 
+        password = form.password.value; 
+        cpassword = form.cpassword.value; 
+
+        // If Not same return False.     
+        if (password != cpassword) { 
+            alert ("\nPassword did not match: Please try again...") 
+            return false; 
+        } 
+
+        // If same return True. 
+        else{ 
+            return true; 
+        } 
+    } 
+</script>
+<div class="container" style="max-width: 500px;">
+    <h1 class="text-center text-primary">Sign Up form</h1>
+    <form action="/register" method="POST" onSubmit = "return checkPassword(this)">
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="firstname">First Name</label>
+                <input class="form-control" type="text" id="name" name="firstname" placeholder="First Name" required>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="lastname">Last Name</label>
+                <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="type">Blood Group</label>
+            <input class="form-control" type="text" id="type" name="type" placeholder="Blood Group" required>
+        </div>
+        <div class="form-group">
+            <label for="username">User Name</label>
+            <input class="form-control" type="text" id="username" name="username" placeholder="User Name (Alphanumeric only)" pattern="[A-Za-z0-9].{1,}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" placeholder="Password" minlength="8" required>
+        </div>
+        <div class="form-group">
+            <label for="cpassword">Confirm Password</label>
+            <input class="form-control" type="password" id="cpassword" name="cpassword" placeholder="Confirm Password" required>
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<%- include("partials/footer") %> 
