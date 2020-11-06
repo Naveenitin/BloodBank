@@ -89,7 +89,7 @@ app.post("/userLogin",passport.authenticate("local",{
 // For Admin
 // LOGIN ROUTES
 // render login form
-app.get("/adminLogin",prevent,function(req,res){
+app.get("/adminLogin",preventAdmin,function(req,res){
     res.render("adminLogin");
 });
 
@@ -142,8 +142,21 @@ app.get("/logout",function(req,res){
 });
 
 //User dashboard
-app.get("/userDashboard",isLoggedIn,function(req,res){
-    res.render("userDashboard",{user:req.user});
+app.get("/userDashboard",isLoggedIn,async function(req,res){
+    var data=[],temp;
+    for(let i=0;i<req.user.donated.length;i++)
+    {
+        temp=await blood.findOne({ bagNumber:req.user.donated[i] }).exec();
+        console.log("This is temp"+temp);
+        data.push({
+            location:temp.location,
+            date: temp.date,
+            report:"Okay"
+        });
+        
+    }
+    console.log(data);
+    res.render("userDashboard",{user:req.user,data:data});
 });
 
 
@@ -171,8 +184,15 @@ function prevent(req, res, next) {
     if(!req.isAuthenticated()){
         return next();
     }
-    console.log("Not athenticated");
-    res.redirect("/userLogin");
+    console.log("Athenticated user");
+    res.redirect("/userDashboard");
+}
+function preventAdmin(req, res, next) {
+    if(!(req.isAuthenticated() && req.user.isAdmin)){
+        return next();
+    }
+    console.log("Athenticated admin");
+    res.redirect("/adminDashboard");
 }
 
 // default route if nothing match

@@ -5,6 +5,7 @@ var bloodSchema = new mongoose.Schema({
     donorId: String,
     seekerId: String,
     location: String,
+    date: {type: Date, default: Date.now},
     type: String
 });
 

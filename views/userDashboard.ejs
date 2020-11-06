@@ -2,13 +2,13 @@
 <link rel="stylesheet" href="/CSS/dashboard.css">
 <div class="jumbotron">
     <div class="container">
-        <h2>
-            <%= user.name %> 
-        </h2>
-        <h3><%= user.email %> </h3>
-        <a href="/add">Add your contribution here</a>
+        <h3>
+            Thank you!! <%= user.name %> 
+        </h3>
+        <p>Through blood donation we can save the life of many persons.</p>
         <a href="/logout"><button>Log Out</button></a>
     </div>
+    <h2 class="text-center">Your Donation History</h2>
     <div class="donation">
         <table class="table table-bordered">
             <thead>
@@ -20,15 +20,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+                <% for( let i = 0; i < data.length; i++ ) { %>
+                    <tr>
+                        <th scope="row"><%- i+1 %> </th>
+                        <td><%= data[i].location %></td>
+                        <td><%- (new Date(data[i].date)).toDateString() %></td>
+                        <td><%= data[i].report %></td>                    
+                    </tr>
+                <% } %>
             </tbody>
         </table>
     </div>
 </div>
-<%= user %> 
+<h1 class="text-center"><blockquote>"It takes 15 mins to save a life – Donate Blood"</blockquote></h1>
 <%- include('partials/footer') %> 

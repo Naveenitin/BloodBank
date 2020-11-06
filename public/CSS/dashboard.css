@@ -10,3 +10,7 @@ table{
 .donation{
     padding-top: 50px;
 }
+blockquote{
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.671);
+}
