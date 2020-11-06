@@ -105,7 +105,7 @@ app.post("/adminLogin",passport.authenticate("local",{
 // });
 //admin dashboard
 app.get("/adminDashboard",isLoggedInAdmin,function(req,res){
-    res.render("adminDashboard",{user:req.user});
+    res.render("adminDashboard",{user:req.user,added:false});
 });
 
 // For Blood receive
@@ -118,7 +118,9 @@ app.post("/blood",isLoggedInAdmin,async function(req,res){
         location: req.body.location,
     });
     await donorUpdate(req.body.donorId,req.body.bagNumber);
-    res.send("Everthing is successfull");
+    console.log("Everthing is successfull");
+    res.render("adminDashboard",{user:req.user,added:true});
+
     
 });
 function donorUpdate(id,bagNumber){
