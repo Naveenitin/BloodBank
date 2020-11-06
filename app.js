@@ -52,6 +52,15 @@ app.get("/",function(req,res){
     res.render("Home");
 });
 
+// Contact Page
+app.get("/contact",function(req,res){
+    res.render("contact");
+});
+
+// About Page
+app.get("/about",function(req,res){
+    res.render("about");
+});
 
 // Create User
 //  show sign up form

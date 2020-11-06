@@ -1,16 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
 .jumbotron{
-    background-color: rgba(0, 0, 0, 0.733);
-    /* background-color: #550202; */
-    color: white;
+    background-color: white;
+    color: black;
 }
 table{
-    background-color: #550202;
-    color: white !important;
+    background-color: #e27d60;
+    color: black !important;
 }
 .donation{
     padding-top: 50px;
 }
 blockquote{
     font-size: 3rem;
-    color: rgba(255, 255, 255, 0.671);
+    color: rgba(0, 0, 0, 0.671);
+    font-weight: 900;
+    font-family: 'Tangerine', cursive;
 }
