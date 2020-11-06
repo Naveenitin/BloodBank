@@ -1,0 +1,38 @@
+<%- include('partials/header') %> 
+<link rel="stylesheet" href="/CSS/dashboard.css">
+<div class="jumbotron">
+    <div class="container">
+        <h2>
+            <%= user.name %> 
+        </h2>
+        <h3><%= user.email %> </h3>
+        <a href="/add">Add your contribution here</a>
+        <a href="/logout"><button>Log Out</button></a>
+    </div>
+
+    <div class="container" style="max-width: 500px;">
+        <h1 class="text-center text-primary">Sign Up form</h1>
+        <form action="/blood" method="POST">
+            <div class="form-group">
+                <label for="bagNumber">Bag Number</label>
+                <input class="form-control" type="text" id="bagNumber" name="bagNumber" placeholder="Bag Number" required>
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="donorId">Donor Id</label>
+                <input class="form-control" type="text" id="donorId" name="donorId" placeholder="Donor Id" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Blood Group</label>
+                <input class="form-control" type="text" id="type" name="type" placeholder="Blood Group" required>
+            </div>
+            <div class="form-group">
+                <label for="location">User Name</label>
+                <input class="form-control" type="text" id="location" name="location" placeholder="Location" required>
+            </div>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<%= user %> 
+<%- include('partials/footer') %> 

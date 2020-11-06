@@ -9,7 +9,8 @@ var userSchema = new mongoose.Schema({
     type: String,
     email: String,
     donated: Array,
-    received: Array
+    received: Array,
+    isAdmin:{type:Boolean, default: false}
 });
 
 userSchema.plugin(passportLocalMongoose);

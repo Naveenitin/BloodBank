@@ -4,6 +4,7 @@ var bloodSchema = new mongoose.Schema({
     bagNumber: Number,
     donorId: String,
     seekerId: String,
+    location: String,
     type: String
 });
 

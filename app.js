@@ -8,8 +8,10 @@ var user = require("./modules/user");
 var blood = require("./modules/blood"); 
 var admin = require("./modules/admin"); 
 
+
 var URL = process.env.databaseURL || 'mongodb://localhost:27017/Blood-Bank' ;
 mongoose.connect(URL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(require("express-session")({
     secret:"This is used encode and decode session,this can be anything",
@@ -83,7 +85,57 @@ app.post("/userLogin",passport.authenticate("local",{
 }),function(req,res){
 });
 
-//
+
+// For Admin
+// LOGIN ROUTES
+// render login form
+app.get("/adminLogin",prevent,function(req,res){
+    res.render("adminLogin");
+});
+
+//login logic
+app.post("/adminLogin",passport.authenticate("local",{
+    successRedirect: "/adminDashboard",
+    failureRedirect: "/adminLogin"
+}),function(req,res){
+});
+// //admin dashboard
+// app.get("/adminDashboard",isLoggedIn,function(req,res){
+//     res.render("adminDashboard",{user:req.user});
+// });
+//admin dashboard
+app.get("/adminDashboard",isLoggedInAdmin,function(req,res){
+    res.render("adminDashboard",{user:req.user});
+});
+
+// For Blood receive
+app.post("/blood",isLoggedInAdmin,async function(req,res){
+    // res.render("userDashboard",{user:req.user});
+    await blood.create({
+        bagNumber: req.body.bagNumber,
+        donorId: req.body.donorId,
+        type: req.body.type,
+        location: req.body.location,
+    });
+    await donorUpdate(req.body.donorId,req.body.bagNumber);
+    res.send("Everthing is successfull");
+    
+});
+function donorUpdate(id,bagNumber){
+    return new Promise(function(resolve,reject){
+        user.findOneAndUpdate({username:id},{$push:{donated:bagNumber}},function(err,obj){
+            if(err)
+                console.log(err)
+            else{
+                console.log("Data Updated");
+                resolve(true);
+
+            }
+        });
+    });
+}
+
+//logout
 app.get("/logout",function(req,res){
     req.logOut();
     res.redirect("/");
@@ -96,6 +148,8 @@ app.get("/userDashboard",isLoggedIn,function(req,res){
 
 
 
+
+
 //  function is used to check to whether user is logged in or not
 //  this is used as middle function
 function isLoggedIn(req, res, next) {
@@ -104,6 +158,13 @@ function isLoggedIn(req, res, next) {
     }
     console.log("You are not logged in");
     res.redirect("/userLogin");
+}
+function isLoggedInAdmin(req, res, next) {
+    if(req.isAuthenticated() && req.user.isAdmin){
+        return next();
+    }
+    console.log("You are not logged in as admin");
+    res.redirect("/adminLogin");
 }
 //  this is function prevent access and login page from loged in user.
 function prevent(req, res, next) {
