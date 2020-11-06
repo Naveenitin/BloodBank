@@ -201,7 +201,7 @@ app.get("*",(req,res)=>{
 });
 
 //Server starting
-var port = 3000 ;
-app.listen(port,()=>{
+var port= process.env.PORT || 3000 ;
+app.listen(port,process.env.IP,()=>{
     console.log("Server is running on port 3000");
 })
