@@ -155,7 +155,7 @@ app.get("/userDashboard",isLoggedIn,async function(req,res){
         });
         
     }
-    console.log(data);
+    // console.log(data);
     res.render("userDashboard",{user:req.user,data:data});
 });
 
